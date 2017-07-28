@@ -231,6 +231,10 @@ trait EntrustUserTrait
      */
     public function attachRole($role)
     {
+        if(is_string($role)) {
+            $role = DB::table('roles')->where('name',$role)->first()->id;
+        }
+        
         if(is_object($role)) {
             $role = $role->getKey();
         }
@@ -249,6 +253,10 @@ trait EntrustUserTrait
      */
     public function detachRole($role)
     {
+        if(is_string($role)) {
+            $role = DB::table('roles')->where('name',$role)->first()->id;
+        }
+        
         if (is_object($role)) {
             $role = $role->getKey();
         }
